@@ -28,7 +28,7 @@ function login() {
             // var result = authenticate();
             // result.then(function (other) {
             //     console.log(other);
-            if(data === 'success')
+            if(data)
                 window.location.assign("cars.html"); //redirect the page to cars.html
             else{
                 console.log(data);
