@@ -12,14 +12,36 @@ function init() {
         })
     });
     $('#find-car').on('click', function(e){
+        $('#user_loading').removeClass('user_loading_hidden').addClass('user_loading');
         e.stopPropagation();
         findCars($('#find-car-input').val())
     })
+    getName().then(function (data) {
+        console.log(data);
+    })
+
+}
+
+function getName() {
+    var promise = $.Deferred();
+    $.ajax({
+        method: "POST",
+        url: "server/utility.php",
+        dataType: "string",
+        data: {type: 'getName'}
+    }).then(function (data) {
+        console.log("here")
+        promise.resolve(data)
+    }).then(function (error) {
+        console.log(error)
+    })
+    return promise.promise();
 }
 
 function findCars(value){
     console.log(value)
     getCars(value).then(function (data) {
+        $('#user_loading').addClass('user_loading_hidden').removeClass('user_loading');
         var template = $('#find-car-template').html();
         var html_maker = new htmlMaker(template);
         var html = html_maker.getHTML(data);
@@ -31,7 +53,7 @@ function getCars(value) {
     var promise = $.Deferred();
     $.ajax({
         method: "POST",
-        url: "server/car.php",
+        url: "server/utility.php",
         dataType: "json",
         data: {type: 'getCars', value: value}
     }).then(function (data) {
@@ -44,7 +66,7 @@ function authenticate() {
     var promise = $.Deferred();
     $.ajax({
         method: "POST",
-        url: "server/car.php",
+        url: "server/utility.php",
         dataType: "text",
         data: {type: 'authenticate'}
     }).then(function (data) {
@@ -57,7 +79,7 @@ function logout() {
     var promise = $.Deferred();
     $.ajax({
         method: "POST",
-        url: "server/car.php",
+        url: "server/utility.php",
         dataType: "text",
         data: {type: 'logout'}
     }).then(function (data) {

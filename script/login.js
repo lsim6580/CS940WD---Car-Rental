@@ -18,7 +18,7 @@ function maybe_login(event){
 function login() {
         $.ajax({
         method: "POST",
-        url: "server/car.php",
+        url: "server/login.php",
         dataType: "text",
         data: {type: 'login', username: $("#name-input").val(), password: $("#password-input").val()},
         //processData: false,
@@ -42,7 +42,7 @@ function authenticate() {
     var promise = $.Deferred();
     $.ajax({
         method: "POST",
-        url: "server/car.php",
+        url: "server/login.php",
         dataType: "text",
         data: {type: 'authenticate'}
     }).then(function (data) {
