@@ -32,8 +32,11 @@ if (isset($_POST["type"])) {
             logout();
             echo true;
             break;
-        case "getAllCars":
-            $SQL = "SELECT * FROM car, carspecs WHERE car.CarSpecsID = carspecs.ID ";
+        case "getCars":
+            $value = $_POST['value'];
+            $SQL = "SELECT * FROM car INNER JOIN carspecs on car.CarSpecsID = carspecs.ID WHERE
+            carspecs.Make LIKE '%$value%' OR car.Color LIKE '%$value%' OR carspecs.Model LIKE '%$value%' 
+            OR carspecs.YearMade LIKE '%$value%' OR carspecs.Size LIKE '%$value%' AND car.Status = 1";
             $result = mysqli_query($connection, $SQL);
             if($result) {
                 $final_result = array();
