@@ -27,10 +27,10 @@ function getName() {
     $.ajax({
         method: "POST",
         url: "server/utility.php",
-        dataType: "string",
+        dataType: "json",
         data: {type: 'getName'}
     }).then(function (data) {
-        console.log("here")
+        console.log(data);
         promise.resolve(data)
     }).then(function (error) {
         console.log(error)
