@@ -129,7 +129,7 @@ function rentCar(value) {
     $.ajax({
         method: "POST",
         url: "server/utility.php",
-        data: {type: 'rentCar', value: 1}//needs to be changed back to 'value' instead of 1
+        data: {type: 'rentCar', value: 9}//needs to be changed back to 'value' instead of 1
     }).then(function (data) {
         promise.resolve(data)
     })

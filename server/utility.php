@@ -6,8 +6,8 @@ $result = mysqli_query($connection,$SQL);
 $count = $result->fetch_array();
 session_start();
 $userID = $_SESSION["ID"];
-if (!isset($_POST["type"])) {
-    $type = 'rentCar';//sanitizeMYSQL($connection, $_POST["type"]);
+if (isset($_POST["type"])) {
+    $type = sanitizeMYSQL($connection, $_POST["type"]);
     switch ($type) {
         case "logout":
             logout();
@@ -82,9 +82,9 @@ if (!isset($_POST["type"])) {
             break;
         
         case 'rentCar':
-            $value = 1;//$_POST['value'];
-            //session_start();
-            $userID = 'j.smith';//$_SESSION["ID"];
+            $value = 9;//$_POST['value'];
+            session_start();
+            $userID = $_SESSION["ID"];
             
             $Update = "UPDATE car SET car.Status = 2 WHERE ID = $value;";
             mysqli_query($connection, $Update);
