@@ -24,9 +24,14 @@ function init() {
     $('#rented-tab').on('click',  function(e){
         $('#user_loading').removeClass('user_loading_hidden').addClass('user_loading');
         e.stopPropagation();
-        findRentals('');
+        findRentals();
     })
-
+    
+    $('#returned-tab').on('click', function(e){
+        $('#user_loading').removeClass('user_loading_hidden').addClass('user_loading');
+        e.stopPropagation();
+        findReturns();
+    });    
 }
 
 function getName() {
@@ -56,23 +61,13 @@ function findCars(value){
         
         $('.car_rent').on('click', function(){
             rentCar($(this).attr('id'));
+            findCars('');
         
         })
     })
     
     
 }
-
-function findRentals(value){
-    getRentals(value).then(function (data){
-        $('#user_loading').addClass('user_loading_hidden').removeClass('user_loading');
-        var template = $('#rented-car-template').html();
-        var html_maker = new htmlMaker(template);
-        var html = html_maker.getHTML(data);
-        $('#rented_cars').html(html);
-    })
-}
-
 function getCars(value) {
     var promise = $.Deferred();
     $.ajax({
@@ -85,14 +80,50 @@ function getCars(value) {
     })
     return promise.promise();
 }
+function findRentals(){
+    getRentals().then(function (data){
+        var template = $('#rented-car-template').html();
+        var html_maker = new htmlMaker(template);
+        var html = html_maker.getHTML(data);
+        $('#rented_cars').html(html);
+        
+        $('.car_return').on('click', function(){
+            returnCar($(this).attr('id'));
+            findRentals();
+        })
+        
+    })
+}
 
-function getRentals(value){
+function getRentals(){
     var promise = $.Deferred();
     $.ajax({
         method: "POST",
         url: "server/utility.php",
         dataType: "json",
-        data: {type: 'getRentals', value: value}
+        data: {type: 'getRentals'}
+    }).then(function (data) {
+        promise.resolve(data)
+    })
+    return promise.promise();
+}
+
+function findReturns(){
+    getReturns().then(function (data){
+        var template = $('#returned-car-template').html();
+        var html_maker = new htmlMaker(template);
+        var html = html_maker.getHTML(data);
+        $('#returned_cars').html(html);
+    });   
+}
+
+function getReturns(){
+    var promise = $.Deferred();
+    $.ajax({
+        method: "POST",
+        url: "server/utility.php",
+        dataType: "json",
+        data: {type: 'getReturns'}
     }).then(function (data) {
         promise.resolve(data)
     })
