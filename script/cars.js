@@ -25,6 +25,11 @@ function init() {
         e.stopPropagation();
         findRentals('');
     })
+    
+    $('.rent_car').on('click', function(){
+        rentCar();
+        
+    })
 
 }
 

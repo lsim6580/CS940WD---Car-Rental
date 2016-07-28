@@ -26,6 +26,7 @@ function processResult($id)
     session_start();
     $_SESSION['ID'] = $id;
     $_SESSION['start'] = time();
+    ini_set('session.use_only_cookies', 1);
 
 
 }

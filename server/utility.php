@@ -4,6 +4,8 @@ include 'sanitize.php';
 $SQL =  "SELECT Customer.ID FROM Customer WHERE Customer.Name='John Smith' AND Customer.Password='".md5('smith')."'";
 $result = mysqli_query($connection,$SQL);
 $count = $result->fetch_array();
+session_start();
+$userID = $_SESSION["ID"];
 if (isset($_POST["type"])) {
     $type = sanitizeMYSQL($connection, $_POST["type"]);
     switch ($type) {
@@ -46,7 +48,7 @@ if (isset($_POST["type"])) {
             $SQL = "SELECT car.Picture, car.Picture_type, carspecs.Make, carspecs.Model, carspecs.YearMade, carspecs.Size, rental.ID as 'RentID', rental.rentDate FROM car 
                 INNER JOIN carspecs on car.CarSpecsID = carspecs.ID 
                 INNER JOIN rental on car.ID = rental.carID WHERE
-                car.Status = 2";
+                car.Status = 2 AND Rental.CustomerID = '".$userID."'";
             //todo: set get userID from cookie and set to variable
             //then use it to filter rental results
             $result = mysqli_query($connection, $SQL);
