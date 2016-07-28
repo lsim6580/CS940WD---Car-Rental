@@ -11,13 +11,20 @@ function init() {
             window.location.assign("index.html");
         })
     });
+    findCars();
     $('#find-car').on('click', function(e){
         $('#user_loading').removeClass('user_loading_hidden').addClass('user_loading');
         e.stopPropagation();
         findCars($('#find-car-input').val())
-    })
+    });
     getName().then(function (data) {
-        console.log(data);
+        $('#username').html(data);
+    });
+    
+    $('#rented-tab').on('click',  function(e){
+        $('#user_loading').removeClass('user_loading_hidden').addClass('user_loading');
+        e.stopPropagation();
+        findRentals('');
     })
 
 }
@@ -27,7 +34,7 @@ function getName() {
     $.ajax({
         method: "POST",
         url: "server/utility.php",
-        dataType: "json",
+        dataType: "text",
         data: {type: 'getName'}
     }).then(function (data) {
         console.log(data);
@@ -49,6 +56,16 @@ function findCars(value){
     })
 }
 
+function findRentals(value){
+    getRentals(value).then(function (data){
+        $('#user_loading').addClass('user_loading_hidden').removeClass('user_loading');
+        var template = $('#rented-car-template').html();
+        var html_maker = new htmlMaker(template);
+        var html = html_maker.getHTML(data);
+        $('#rented_cars').html(html);
+    })
+}
+
 function getCars(value) {
     var promise = $.Deferred();
     $.ajax({
@@ -56,6 +73,19 @@ function getCars(value) {
         url: "server/utility.php",
         dataType: "json",
         data: {type: 'getCars', value: value}
+    }).then(function (data) {
+        promise.resolve(data)
+    })
+    return promise.promise();
+}
+
+function getRentals(value){
+    var promise = $.Deferred();
+    $.ajax({
+        method: "POST",
+        url: "server/utility.php",
+        dataType: "json",
+        data: {type: 'getRentals', value: value}
     }).then(function (data) {
         promise.resolve(data)
     })
