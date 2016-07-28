@@ -6,8 +6,8 @@ $result = mysqli_query($connection,$SQL);
 $count = $result->fetch_array();
 session_start();
 $userID = $_SESSION["ID"];
-if (isset($_POST["type"])) {
-    $type = sanitizeMYSQL($connection, $_POST["type"]);
+if (!isset($_POST["type"])) {
+    $type = 'rentCar';//sanitizeMYSQL($connection, $_POST["type"]);
     switch ($type) {
         case "logout":
             logout();
@@ -50,8 +50,7 @@ if (isset($_POST["type"])) {
                 INNER JOIN carspecs on car.CarSpecsID = carspecs.ID 
                 INNER JOIN rental on car.ID = rental.carID WHERE
                 car.Status = 2 AND Rental.CustomerID = '".$userID."'";
-            //todo: set get userID from cookie and set to variable
-            //then use it to filter rental results
+            
             $result = mysqli_query($connection, $SQL);
             if($result) {
                 $final_result = array();
@@ -81,6 +80,28 @@ if (isset($_POST["type"])) {
             // processResult('j.smith');
 
             break;
+        
+        case 'rentCar':
+            $value = 1;//$_POST['value'];
+            //session_start();
+            $userID = 'j.smith';//$_SESSION["ID"];
+            
+            $Update = "UPDATE car SET car.Status = 2 WHERE ID = $value;";
+            mysqli_query($connection, $Update);
+            
+            $date = getdate();
+            $Insert = "INSERT INTO rental(rentDate, status, CustomerID, carID)";
+            $Insert.="VALUES(".$date['year']."-".$date['mon']."-".$date['mday'].",";
+            $Insert.="2, '$userID', '$value');";
+            mysqli_query($connection, $Insert);
+            echo true;
+            break;
+        
+        
+                    
+       
+                    
+            
 
 //
     }

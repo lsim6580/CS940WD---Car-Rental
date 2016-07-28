@@ -26,11 +26,6 @@ function init() {
         e.stopPropagation();
         findRentals('');
     })
-    
-    $('.rent_car').on('click', function(){
-        rentCar();
-        
-    })
 
 }
 
@@ -58,7 +53,14 @@ function findCars(value){
         var html_maker = new htmlMaker(template);
         var html = html_maker.getHTML(data);
         $('#search_results').html(html);
+        
+        $('.car_rent').on('click', function(){
+            rentCar($(this).attr('id'));
+        
+        })
     })
+    
+    
 }
 
 function findRentals(value){
@@ -121,3 +123,15 @@ function logout() {
         promise.resolve(data)
     })
     return promise.promise()}
+
+function rentCar(value) {
+    var promise = $.Deferred();
+    $.ajax({
+        method: "POST",
+        url: "server/utility.php",
+        data: {type: 'rentCar', value: 1}//needs to be changed back to 'value' instead of 1
+    }).then(function (data) {
+        promise.resolve(data)
+    })
+    return promise.promise();
+}
