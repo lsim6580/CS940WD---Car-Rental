@@ -2,7 +2,7 @@
 <?php
 
   $db_hostname = 'kc-sce-appdb01';
-  $db_database = "jronq5";
+ $db_database = "jronq5";
   $db_username = "jronq5";
   $db_password = "QwiLHWIZix4uJ9qrpNlz";
 

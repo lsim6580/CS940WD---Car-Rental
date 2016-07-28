@@ -40,8 +40,9 @@ if (isset($_POST["type"])) {
                 $it = json_encode($final_result);
                 echo $it;
 //
-         }
+            }
 //
+
             break;
             
         case 'getRentals':
@@ -69,13 +70,13 @@ if (isset($_POST["type"])) {
          }
 //
             break;
+
         case 'getName':
             session_start();
             $SQL = "Select Name FROM customer WHERE Customer.ID = '".$_SESSION['ID']."'";
             $result = mysqli_query($connection, $SQL);
-            $row  = mysqli_fetch_array($result);
+            $row  = mysqli_fetch_array($result);;
             echo $row['Name'];
-            return;
             //        logout();
             // processResult('j.smith');
 

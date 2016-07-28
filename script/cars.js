@@ -11,13 +11,14 @@ function init() {
             window.location.assign("index.html");
         })
     });
+    findCars();
     $('#find-car').on('click', function(e){
         $('#user_loading').removeClass('user_loading_hidden').addClass('user_loading');
         e.stopPropagation();
         findCars($('#find-car-input').val())
     });
     getName().then(function (data) {
-        console.log(data);
+        $('#username').html(data);
     });
     
     $('#rented-tab').on('click',  function(e){
@@ -38,10 +39,10 @@ function getName() {
     $.ajax({
         method: "POST",
         url: "server/utility.php",
-        dataType: "string",
+        dataType: "text",
         data: {type: 'getName'}
     }).then(function (data) {
-        console.log("here")
+        console.log(data);
         promise.resolve(data)
     }).then(function (error) {
         console.log(error)
