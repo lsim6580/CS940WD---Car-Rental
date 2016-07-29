@@ -69,17 +69,6 @@ if (isset($_POST["type"])) {
          }
 //
             break;
-
-        case 'getName':
-            session_start();
-            $SQL = "Select Name FROM customer WHERE Customer.ID = '".$_SESSION['ID']."'";
-            $result = mysqli_query($connection, $SQL);
-            $row  = mysqli_fetch_array($result);;
-            echo $row['Name'];
-            //        logout();
-            // processResult('j.smith');
-
-            break;
         
         case 'rentCar':
             $value = 9;//$_POST['value'];
@@ -135,7 +124,17 @@ if (isset($_POST["type"])) {
                 echo true;
                 break;
                     
-       
+            
+            case 'getName':
+                session_start();
+                $SQL = "Select Name FROM customer WHERE Customer.ID = '".$_SESSION['ID']."'";
+                $result = mysqli_query($connection, $SQL);
+                $row  = mysqli_fetch_array($result);;
+                echo $row['Name'];
+                //        logout();
+                // processResult('j.smith');
+
+                break;
                     
             
 
