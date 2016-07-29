@@ -9,47 +9,49 @@
         <script type="text/javascript"  src='script/general.js'></script>
         <script type="text/javascript"  src='script/cars.js'></script>
         <script id="rented-car-template" type="text/html">
-        <table>
-            <tr>
-                <th>Picture</th><th>Detail</th><th></th>
-            </tr>
-
-            <tr>
-                <td><img src="{{picture}}"></td> 
-                <td class="car_details"> 
-                    <div class="car_title">
-                        <div class="car_make">
-                            {{make}} | {{model}}
+            <table>
+                <tr>
+                    <th>Picture</th><th>Detail</th><th></th>
+                </tr>
+                {{#block rented_car}}
+                <tr>
+                    <td><img src="{{picture}}"></td>
+                    <td class="car_details">
+                        <div class="car_title">
+                            <div class="car_make">
+                                {{make}} | {{model}}
+                            </div>
+                            <div class="car_year">
+                                {{year}}
+                            </div>
                         </div>
-                        <div class="car_year">
-                            {{year}}
+                        <div class="car_size">
+                            Size: {{size}}
                         </div>
-                    </div>
-                    <div class="car_size">
-                        Size: {{size}}
-                    </div>
-                    <div class="rental_ID">
-                        Rental #: {{rental_ID}}
-                    </div>   
-                    <div class="car_date">
-                        Rent date: {{rent_date}}
-                    </div>          
-                </td>
-                <td>
-                    <div class="return_car rentalCar{{car_ID}}" data-rental-id="{{car_ID}}">Return Car</div>
-                </td>
+                        <div class="rental_ID">
+                            Rental #: {{rental_ID}}
+                        </div>
+                        <div class="car_date">
+                            Rent date: {{rent_date}}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="return_car" data-rental-id="{{rental_ID}}">Return Car</div>
+                    </td>
 
-            </tr>
-
-        </table>
+                </tr>
+                {{#end block rented_car}}
+            </table>
     </script>
     <script id="returned-car-template" type="text/html">
         <table>
-
-
             <tr>
-                <td><img src="{{picture}}"></td> 
-                <td class="car_details"> 
+                <th>Picture</th><th>Detail</th>
+            </tr>
+            {{#block returned_car}}
+            <tr>
+                <td><img src="{{picture}}"></td>
+                <td class="car_details">
                     <div class="car_title">
                         <div class="car_make">
                             {{make}} | {{model}}
@@ -63,13 +65,13 @@
                     </div>
                     <div class="rental_ID">
                         Rental #: {{rental_ID}}
-                    </div>   
+                    </div>
                     <div class="car_date">
                         Return date: {{return_date}}
-                    </div>          
+                    </div>
                 </td>
             </tr>
-            
+            {{#end block returned_car}}
         </table>
     </script>
     <script id="find-car-template" type="text/html">

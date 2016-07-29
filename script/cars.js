@@ -26,14 +26,12 @@ function init() {
     
     $('#rented-tab').on('click',  function(e){
 
-        e.stopPropagation();
         findRentals();
     })
     
     $('#returned-tab').on('click', function(e){
-        $('#user_loading').removeClass('user_loading_hidden').addClass('user_loading');
-        e.stopPropagation();
-        findReturns();
+      //  $('#user_loading').removeClass('user_loading_hidden').addClass('user_loading');
+          findReturns();
     });    
 }
 
@@ -88,7 +86,7 @@ function findRentals(){
     getRentals().then(function (data){
         var template = $('#rented-car-template').html();
         var html_maker = new htmlMaker(template);
-        var html = html_maker.getHTML(data);
+        var html = html_maker.replace_Block('rented_car',data,template);
         $('#rented_cars').html(html);
         
         $('.return_car').on('click', function(){
@@ -108,6 +106,7 @@ function getRentals(){
         data: {type: 'getRentals'}
     }).then(function (data) {
         $('#find-car').html(data);
+        console.log(data);
         promise.resolve(data)
     })
     return promise.promise();
@@ -115,12 +114,12 @@ function getRentals(){
 
 function findReturns(){
     getReturns().then(function (data){
-        var template = $('#returned-car-template').html();
-        var html_maker = new htmlMaker(template);
-        var html = html_maker.getHTML(data);
-        $('#returned_cars').html(html);
+         var template = $('#returned-car-template').html();
+         var html_maker = new htmlMaker(template);
+         var html = html_maker.replace_Block('returned_car',data, template);
+         $('#returned_cars').html(html);
     });   
-    findReturns();
+
 }
 
 function getReturns(){
@@ -131,6 +130,7 @@ function getReturns(){
         dataType: "json",
         data: {type: 'getReturns'}
     }).then(function (data) {
+        console.log(data);
         promise.resolve(data)
     })
     return promise.promise();
@@ -156,7 +156,7 @@ function returnCar(value) {
     $.ajax({
         method: "POST",
         url: "server/utility.php",
-        data: {type: 'returnCar', value: 9},//needs to be changed back to 'value' instead of 1
+        data: {type: 'returnCar', value: value},//needs to be changed back to 'value' instead of 1
         success: function(){
             alert('Car Returned Successfully!');
         }
