@@ -1,11 +1,7 @@
 <?php
 require_once 'connection.php';
 include 'sanitize.php';
-$SQL =  "SELECT Customer.ID FROM Customer WHERE Customer.Name='John Smith' AND Customer.Password='".md5('smith')."'";
-$result = mysqli_query($connection,$SQL);
-$count = $result->fetch_array();
-session_start();
-$userID = $_SESSION["ID"];
+
 if (isset($_POST["type"])) {
     $type = sanitizeMYSQL($connection, $_POST["type"]);
     switch ($type) {
@@ -25,7 +21,7 @@ if (isset($_POST["type"])) {
 
             $SQL = "SELECT car.ID, car.Picture,car.Picture_type,car.Color,car.Status,carspecs.Make,carspecs.Size,
                     carspecs.YearMade,carspecs.Model FROM car INNER JOIN carspecs ON car.CarSpecsID = carspecs.ID
-                    WHERE $LIKE";
+                    WHERE $LIKE AND car.Status = 1";
 //            $SQL = "SELECT * FROM car INNER JOIN carspecs on car.CarSpecsID = carspecs.ID WHERE
 //            $LIKE AND car.Status = 1";
 
@@ -49,11 +45,13 @@ if (isset($_POST["type"])) {
             break;
 
         case 'getRentals':
-            $SQL = "SELECT car.ID as 'carID', car.Picture, car.Picture_type, carspecs.Make, carspecs.Model, carspecs.YearMade, carspecs.Size, rental.ID as 'RentID', rental.rentDate FROM car 
-                INNER JOIN carspecs on car.CarSpecsID = carspecs.ID 
+            session_start();
+            $userID = $_SESSION["ID"];
+            $SQL = "SELECT car.ID as 'carID', car.Picture, car.Picture_type, carspecs.Make, carspecs.Model, carspecs.YearMade, carspecs.Size, rental.ID as 'RentID', rental.rentDate FROM car
+                INNER JOIN carspecs on car.CarSpecsID = carspecs.ID
                 INNER JOIN rental on car.ID = rental.carID WHERE
                 car.Status = 2 AND Rental.CustomerID = '".$userID."'";
-            
+
             $result = mysqli_query($connection, $SQL);
             if($result) {
                 $final_result = array();
@@ -72,31 +70,34 @@ if (isset($_POST["type"])) {
          }
 //
             break;
-        
+
         case 'rentCar':
-            $value = 9;//$_POST['value'];
+            $value = $_POST['value'];
+
             session_start();
             $userID = $_SESSION["ID"];
             
-            $Update = "UPDATE car SET car.Status = 2 WHERE ID = $value;";
-            mysqli_query($connection, $Update);
+            //$Update = "UPDATE car SET car.Status = 2 WHERE ID = $value;";
+           // mysqli_query($connection, $Update);
             
             $date = getdate();
             $Insert = "INSERT INTO rental(rentDate, status, CustomerID, carID)";
-            $Insert.="VALUES(".$date['year']."-".$date['mon']."-".$date['mday'].",";
+            $Insert.="VALUES('".$date['year']."-".$date['mon']."-".$date['mday']."',";
             $Insert.="2, '$userID', '$value');";
-            mysqli_query($connection, $Insert);
-            echo true;
+           // mysqli_query($connection, $Insert);
+            echo $Insert;
             break;
-        
+
         case 'getReturns':
+            session_start();
+            $userID = $_SESSION["ID"];
             $SQL = "select rental.ID, rental.returnDate, carspecs.Make, carspecs.Model, carspecs.Size, carspecs.YearMade, car.Picture, car.Picture_type FROM rental";
             $SQL .= "INNER JOIN car on rental.carID = car.ID";
             $SQL .= "INNER JOIN carspecs on car.carSpecsID = carspecs.ID";
             $SQL .= "WHERE rental.CustomerID = '$userID' AND rental.status = 1;";
-            
+
             $result = mysqli_query($connection, $SQL);
-            
+
             if($result) {
                 $final_result = array();
                 $row_count = mysqli_num_rows($result);
@@ -114,10 +115,12 @@ if (isset($_POST["type"])) {
             }
 //
             break;
-        
+
             case 'returnCar':
-                $value = 9;//$_POST['value'];
-                        
+                session_start();
+                $userID = $_SESSION["ID"];
+                $value = ['value'];
+
                 $UpdateCar = "UPDATE car SET car.Status = 1 WHERE ID = $value;";
                 mysqli_query($connection, $Update);
                 $date = getdate();
@@ -126,8 +129,8 @@ if (isset($_POST["type"])) {
                 mysqli_query($connection, $UpdateRental);
                 echo true;
                 break;
-                    
-            
+
+
             case 'getName':
                 session_start();
                 $SQL = "Select Name FROM customer WHERE Customer.ID = '".$_SESSION['ID']."'";
@@ -138,8 +141,8 @@ if (isset($_POST["type"])) {
                 // processResult('j.smith');
 
                 break;
-                    
-            
+
+
 
 //
     }
@@ -173,4 +176,4 @@ function LIKE($column, $words) {
     }
     return $LIKE;
 }
-//
+

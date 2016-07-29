@@ -141,7 +141,7 @@ function rentCar(value) {
     $.ajax({
         method: "POST",
         url: "server/utility.php",
-        data: {type: 'rentCar', value: 9},//needs to be changed back to 'value' instead of 1
+        data: {type: 'rentCar', value: value},//needs to be changed back to 'value' instead of 1
         success: function(){
             alert('Car Rented Successfully!');
         }
