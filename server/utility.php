@@ -4,6 +4,8 @@ include 'sanitize.php';
 $SQL =  "SELECT Customer.ID FROM Customer WHERE Customer.Name='John Smith' AND Customer.Password='".md5('smith')."'";
 $result = mysqli_query($connection,$SQL);
 $count = $result->fetch_array();
+session_start();
+$userID = $_SESSION["ID"];
 if (isset($_POST["type"])) {
     $type = sanitizeMYSQL($connection, $_POST["type"]);
     switch ($type) {
@@ -47,12 +49,11 @@ if (isset($_POST["type"])) {
             break;
 
         case 'getRentals':
-            $SQL = "SELECT car.Picture, car.Picture_type, carspecs.Make, carspecs.Model, carspecs.YearMade, carspecs.Size, rental.ID as 'RentID', rental.rentDate FROM car 
+            $SQL = "SELECT car.ID as 'carID', car.Picture, car.Picture_type, carspecs.Make, carspecs.Model, carspecs.YearMade, carspecs.Size, rental.ID as 'RentID', rental.rentDate FROM car 
                 INNER JOIN carspecs on car.CarSpecsID = carspecs.ID 
                 INNER JOIN rental on car.ID = rental.carID WHERE
-                car.Status = 2";
-            //todo: set get userID from cookie and set to variable
-            //then use it to filter rental results
+                car.Status = 2 AND Rental.CustomerID = '".$userID."'";
+            
             $result = mysqli_query($connection, $SQL);
             if($result) {
                 $final_result = array();
@@ -61,7 +62,7 @@ if (isset($_POST["type"])) {
                     $row = mysqli_fetch_array($result);
                     $item = array("model" => $row["Model"], 'make' => $row['Make'], 'year' => $row['YearMade'], "size" => $row['Size'],
                         'picture' => 'data:'.$row['Picture_type'].';base64,'.base64_encode($row['Picture']), 'rent_date' => $row['rentDate'],
-                        'rental_ID' => $row['RentID']);
+                        'car_ID' => $row['carID']);
                     $final_result[] = $item;
 
                 }
@@ -71,17 +72,74 @@ if (isset($_POST["type"])) {
          }
 //
             break;
-
-        case 'getName':
+        
+        case 'rentCar':
+            $value = 9;//$_POST['value'];
             session_start();
-            $SQL = "Select Name FROM customer WHERE Customer.ID = '".$_SESSION['ID']."'";
-            $result = mysqli_query($connection, $SQL);
-            $row  = mysqli_fetch_array($result);;
-            echo $row['Name'];
-            //        logout();
-            // processResult('j.smith');
-
+            $userID = $_SESSION["ID"];
+            
+            $Update = "UPDATE car SET car.Status = 2 WHERE ID = $value;";
+            mysqli_query($connection, $Update);
+            
+            $date = getdate();
+            $Insert = "INSERT INTO rental(rentDate, status, CustomerID, carID)";
+            $Insert.="VALUES(".$date['year']."-".$date['mon']."-".$date['mday'].",";
+            $Insert.="2, '$userID', '$value');";
+            mysqli_query($connection, $Insert);
+            echo true;
             break;
+        
+        case 'getReturns':
+            $SQL = "select rental.ID, rental.returnDate, carspecs.Make, carspecs.Model, carspecs.Size, carspecs.YearMade, car.Picture, car.Picture_type FROM rental";
+            $SQL .= "INNER JOIN car on rental.carID = car.ID";
+            $SQL .= "INNER JOIN carspecs on car.carSpecsID = carspecs.ID";
+            $SQL .= "WHERE rental.CustomerID = '$userID' AND rental.status = 1;";
+            
+            $result = mysqli_query($connection, $SQL);
+            
+            if($result) {
+                $final_result = array();
+                $row_count = mysqli_num_rows($result);
+                for ($i = 0; $i < $row_count; ++$i) {
+                    $row = mysqli_fetch_array($result);
+                    $item = array("model" => $row["Model"], 'make' => $row['Make'], 'year' => $row['YearMade'], "size" => $row['Size'],
+                        'picture' => 'data:'.$row['Picture_type'].';base64,'.base64_encode($row['Picture']), 'return_date' => $row['returnDate'],
+                        'rental_ID' => $row['ID']);
+                    $final_result[] = $item;
+
+                }
+                $it = json_encode($final_result);
+                echo $it;
+//
+            }
+//
+            break;
+        
+            case 'returnCar':
+                $value = 9;//$_POST['value'];
+                        
+                $UpdateCar = "UPDATE car SET car.Status = 1 WHERE ID = $value;";
+                mysqli_query($connection, $Update);
+                $date = getdate();
+                $UpdateRental = "UPDATE rental set rental.status = 1, rental.returnDate = ".$date['year']."-".$date['mon']."-".$date['mday']
+                        ." WHERE carID = '$value' AND CustomerID = '$userID';";
+                mysqli_query($connection, $UpdateRental);
+                echo true;
+                break;
+                    
+            
+            case 'getName':
+                session_start();
+                $SQL = "Select Name FROM customer WHERE Customer.ID = '".$_SESSION['ID']."'";
+                $result = mysqli_query($connection, $SQL);
+                $row  = mysqli_fetch_array($result);;
+                echo $row['Name'];
+                //        logout();
+                // processResult('j.smith');
+
+                break;
+                    
+            
 
 //
     }

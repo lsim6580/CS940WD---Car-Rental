@@ -36,7 +36,7 @@
                     </div>          
                 </td>
                 <td>
-                    <div class="return_car" data-rental-id="{{rental_ID}}">Return Car</div>
+                    <div class="return_car rentalCar{{car_ID}}" data-rental-id="{{car_ID}}">Return Car</div>
                 </td>
 
             </tr>
@@ -96,7 +96,7 @@
                 <img id="user_loading" class="user_loading_hidden" src="images/loading.gif">
             </div>
 
-            <img src="images/car.PNG">
+            <img src="images/car.png">
             <p>Rent a Car!</p>
 
         </div>
@@ -118,7 +118,7 @@
                     </div>
                 </div>
             </div>
-            <div class="tab"> Returned Cars
+            <div class="tab" id="returned-tab"> Returned Cars
                 <div class="tab_detail_hidden"> 
                     <div id="returned_cars">
                     </div>

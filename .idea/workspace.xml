@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eb820479-c059-41f3-960c-84459e3f44d3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cars.html" afterPath="$PROJECT_DIR$/cars.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/script/cars.js" afterPath="$PROJECT_DIR$/script/cars.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/connection.php" afterPath="$PROJECT_DIR$/server/connection.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/login.php" afterPath="$PROJECT_DIR$/server/login.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/utility.php" afterPath="$PROJECT_DIR$/server/utility.php" />
     </list>
     <ignored path="project3.iws" />
@@ -30,14 +29,18 @@
       <file leaf-file-name="cars.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/script/cars.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1275">
-              <caret line="75" column="23" selection-start-line="75" selection-start-column="23" selection-end-line="75" selection-end-column="23" />
-              <folding />
+            <state relative-caret-position="1972">
+              <caret line="116" column="23" selection-start-line="116" selection-start-column="23" selection-end-line="116" selection-end-column="23" />
+              <folding>
+                <marker date="1469764116232" expanded="true" signature="43:334" ph="{...}" />
+                <marker date="1469764116232" expanded="true" signature="49:176" ph="//..." />
+                <marker date="1469764116232" expanded="true" signature="223:327" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="connection.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="connection.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/connection.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
@@ -52,16 +55,10 @@
       <file leaf-file-name="utility.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/utility.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="23" column="112" selection-start-line="23" selection-start-column="112" selection-end-line="23" selection-end-column="112" />
+            <state relative-caret-position="340">
+              <caret line="25" column="112" selection-start-line="25" selection-start-column="112" selection-end-line="25" selection-end-column="112" />
               <folding>
-                <marker date="1469738372472" expanded="true" signature="70:176" ph="SELECT Custo... Customer" />
-                <marker date="1469738372472" expanded="true" signature="884:1091" ph="SELECT * FRO... car" />
-                <marker date="1469738372472" expanded="true" signature="884:1118" ph="SELECT car.I... car" />
-                <marker date="1469738372472" expanded="true" signature="884:1119" ph="SELECT car.I... car" />
-                <marker date="1469738372472" expanded="true" signature="1148:1262" ph="SELECT * FRO... car" />
-                <marker date="1469738372472" expanded="true" signature="2101:2417" ph="SELECT car.P... car" />
-                <marker date="1469738372472" expanded="true" signature="3409:3476" ph="Select Name customer" />
+                <marker date="1469764116224" expanded="true" signature="70:176" ph="SELECT Custo... Customer" />
               </folding>
             </state>
           </provider>
@@ -77,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cars.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="cars.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cars.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1411">
-              <caret line="83" column="34" selection-start-line="83" selection-start-column="34" selection-end-line="83" selection-end-column="34" />
+            <state relative-caret-position="158">
+              <caret line="82" column="55" selection-start-line="82" selection-start-column="55" selection-end-line="82" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -108,9 +105,9 @@
         <entry file="file://$PROJECT_DIR$/server/login.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="527">
-              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding>
-                <marker date="1469565342481" expanded="true" signature="358:472" ph="SELECT Custo... Customer" />
+                <marker date="1469764116206" expanded="true" signature="358:472" ph="SELECT Custo... Customer" />
               </folding>
             </state>
           </provider>
@@ -150,10 +147,10 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/script/login.js" />
         <option value="$PROJECT_DIR$/server/car.php" />
-        <option value="$PROJECT_DIR$/cars.html" />
         <option value="$PROJECT_DIR$/server/utility.php" />
         <option value="$PROJECT_DIR$/script/cars.js" />
         <option value="$PROJECT_DIR$/server/connection.php" />
+        <option value="$PROJECT_DIR$/cars.html" />
       </list>
     </option>
   </component>
@@ -371,12 +368,12 @@
       <workItem from="1469157547701" duration="43329000" />
       <workItem from="1469478106165" duration="24024000" />
       <workItem from="1469638605334" duration="14903000" />
-      <workItem from="1469763773592" duration="128000" />
+      <workItem from="1469763773592" duration="374000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87287000" />
+    <option name="totallyTimeSpent" value="87533000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -424,7 +421,7 @@
         <state relative-caret-position="527">
           <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding>
-            <marker date="1469565342481" expanded="true" signature="358:472" ph="SELECT Custo... Customer" />
+            <marker date="1469764116206" expanded="true" signature="358:472" ph="SELECT Custo... Customer" />
           </folding>
         </state>
       </provider>
@@ -446,7 +443,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1469764116232" expanded="true" signature="43:334" ph="{...}" />
+            <marker date="1469764116232" expanded="true" signature="49:176" ph="//..." />
+            <marker date="1469764116232" expanded="true" signature="223:327" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -469,13 +470,7 @@
         <state relative-caret-position="833">
           <caret line="49" column="20" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="20" />
           <folding>
-            <marker date="1469738372472" expanded="true" signature="70:176" ph="SELECT Custo... Customer" />
-            <marker date="1469738372472" expanded="true" signature="884:1091" ph="SELECT * FRO... car" />
-            <marker date="1469738372472" expanded="true" signature="884:1118" ph="SELECT car.I... car" />
-            <marker date="1469738372472" expanded="true" signature="884:1119" ph="SELECT car.I... car" />
-            <marker date="1469738372472" expanded="true" signature="1148:1262" ph="SELECT * FRO... car" />
-            <marker date="1469738372472" expanded="true" signature="2101:2417" ph="SELECT car.P... car" />
-            <marker date="1469738372472" expanded="true" signature="3409:3476" ph="Select Name customer" />
+            <marker date="1469764116224" expanded="true" signature="70:176" ph="SELECT Custo... Customer" />
           </folding>
         </state>
       </provider>
@@ -523,7 +518,7 @@
         <state relative-caret-position="527">
           <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding>
-            <marker date="1469565342481" expanded="true" signature="358:472" ph="SELECT Custo... Customer" />
+            <marker date="1469764116206" expanded="true" signature="358:472" ph="SELECT Custo... Customer" />
           </folding>
         </state>
       </provider>
@@ -539,7 +534,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="24" column="29" selection-start-line="24" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1469764116232" expanded="true" signature="43:334" ph="{...}" />
+            <marker date="1469764116232" expanded="true" signature="49:176" ph="//..." />
+            <marker date="1469764116232" expanded="true" signature="223:327" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -579,7 +578,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1469565342481" expanded="true" signature="358:472" ph="SELECT Custo... Customer" />
+            <marker date="1469764116206" expanded="true" signature="358:472" ph="SELECT Custo... Customer" />
           </folding>
         </state>
       </provider>
@@ -611,7 +610,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1469764116232" expanded="true" signature="43:334" ph="{...}" />
+            <marker date="1469764116232" expanded="true" signature="49:176" ph="//..." />
+            <marker date="1469764116232" expanded="true" signature="223:327" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -651,7 +654,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1469565342481" expanded="true" signature="358:472" ph="SELECT Custo... Customer" />
+            <marker date="1469764116206" expanded="true" signature="358:472" ph="SELECT Custo... Customer" />
           </folding>
         </state>
       </provider>
@@ -735,9 +738,9 @@
     <entry file="file://$PROJECT_DIR$/server/login.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding>
-            <marker date="1469565342481" expanded="true" signature="358:472" ph="SELECT Custo... Customer" />
+            <marker date="1469764116206" expanded="true" signature="358:472" ph="SELECT Custo... Customer" />
           </folding>
         </state>
       </provider>
@@ -758,34 +761,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cars.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1411">
-          <caret line="83" column="34" selection-start-line="83" selection-start-column="34" selection-end-line="83" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/script/cars.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="75" column="23" selection-start-line="75" selection-start-column="23" selection-end-line="75" selection-end-column="23" />
-          <folding />
+        <state relative-caret-position="1972">
+          <caret line="116" column="23" selection-start-line="116" selection-start-column="23" selection-end-line="116" selection-end-column="23" />
+          <folding>
+            <marker date="1469764116232" expanded="true" signature="43:334" ph="{...}" />
+            <marker date="1469764116232" expanded="true" signature="49:176" ph="//..." />
+            <marker date="1469764116232" expanded="true" signature="223:327" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/utility.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="23" column="112" selection-start-line="23" selection-start-column="112" selection-end-line="23" selection-end-column="112" />
+        <state relative-caret-position="340">
+          <caret line="25" column="112" selection-start-line="25" selection-start-column="112" selection-end-line="25" selection-end-column="112" />
           <folding>
-            <marker date="1469738372472" expanded="true" signature="70:176" ph="SELECT Custo... Customer" />
-            <marker date="1469738372472" expanded="true" signature="884:1091" ph="SELECT * FRO... car" />
-            <marker date="1469738372472" expanded="true" signature="884:1118" ph="SELECT car.I... car" />
-            <marker date="1469738372472" expanded="true" signature="884:1119" ph="SELECT car.I... car" />
-            <marker date="1469738372472" expanded="true" signature="1148:1262" ph="SELECT * FRO... car" />
-            <marker date="1469738372472" expanded="true" signature="2101:2417" ph="SELECT car.P... car" />
-            <marker date="1469738372472" expanded="true" signature="3409:3476" ph="Select Name customer" />
+            <marker date="1469764116224" expanded="true" signature="70:176" ph="SELECT Custo... Customer" />
           </folding>
         </state>
       </provider>
@@ -805,6 +798,14 @@
           <folding>
             <element signature="e#8#44#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cars.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="82" column="55" selection-start-line="82" selection-start-column="55" selection-end-line="82" selection-end-column="55" />
+          <folding />
         </state>
       </provider>
     </entry>
