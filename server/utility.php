@@ -10,7 +10,7 @@ if (isset($_POST["type"])) {
             echo true;
             break;
         case "getCars":
-            $value = $_POST['value'];
+            $value = sanitizeMYSQL($connection,$_POST['value']);
             $words = explode(' ', $value);
             $LIKE = '';
             $LIKE.=LIKE("carspecs.Make", $words);

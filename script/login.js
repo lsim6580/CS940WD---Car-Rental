@@ -16,6 +16,7 @@ function maybe_login(event){
 }
 
 function login() {
+        $('#loading').removeClass('loading_hidden').addClass('loading');
         $.ajax({
         method: "POST",
         url: "server/login.php",
@@ -25,14 +26,13 @@ function login() {
        // contentType: false
 
     }).then(function (data) {
-            // var result = authenticate();
-            // result.then(function (other) {
-            //     console.log(other);
-            if(data)
+            console.log(data);
+            $('#loading').removeClass('loading').addClass('loading_hidden');
+            if($.trim(data)=="success")
                 window.location.assign("cars.html"); //redirect the page to cars.html
             else{
-                console.log(data);
-                $("#loading").attr("class","loading_hidden"); //hide the loading icon
+
+                $('#loading').removeClass('loading').addClass('loading_hidden');
                 $("#login_feedback").html("Invalid username or password"); //show feedback
             }
            //  })

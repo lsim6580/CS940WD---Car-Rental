@@ -12,15 +12,13 @@ function init() {
         })
     });
     
-    findCars();
     $('#find-car').on('click', function(e){
-        $('#user_loading').removeClass('user_loading_hidden').addClass('user_loading');
         e.stopPropagation();
         findCars($('#find-car-input').val())
     });
     
     getName().then(function (data) {
-        $('#user_loading').addClass('user_loading_hidden').removeClass('user_loading_hidden');
+        $('#user_loading').addClass('user_loading_hidden').removeClass('user_loading');
         $('#username').html(data);
     });
     
@@ -53,6 +51,8 @@ function getName() {
 }
 
 function findCars(value){
+    var loading = '<img src="images/loading.gif">';
+    $('#search_results').html(loading);
     console.log(value)
     getCars(value).then(function (data) {
         $('#user_loading').addClass('user_loading_hidden').removeClass('user_loading');
@@ -60,8 +60,10 @@ function findCars(value){
         var html_maker = new htmlMaker(template);
         var html = html_maker.getHTML(data);
         $('#search_results').html(html);
+
         
         $('.car_rent').on('click', function(){
+            $('#find-car-input').val('');
             rentCar($(this).attr('id'));
             findCars('');
         
@@ -83,6 +85,8 @@ function getCars(value) {
     return promise.promise();
 }
 function findRentals(){
+    var loading = '<img src="images/loading.gif">';
+    $('#rented_cars').html(loading);
     getRentals().then(function (data){
         var template = $('#rented-car-template').html();
         var html_maker = new htmlMaker(template);
@@ -113,6 +117,8 @@ function getRentals(){
 }
 
 function findReturns(){
+    var loading = '<img src="images/loading.gif">';
+    $('#returned_cars').html(loading);
     getReturns().then(function (data){
          var template = $('#returned-car-template').html();
          var html_maker = new htmlMaker(template);

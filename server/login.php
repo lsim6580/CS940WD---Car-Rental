@@ -7,16 +7,19 @@ if (isset($_POST["type"])) {
         case "login":
             $username = sanitizeMYSQL($connection, $_POST['username']);
             $password = md5(sanitizeMYSQL($connection, $_POST['password']));
-            $SQL = "SELECT Customer.ID FROM Customer WHERE Customer.Name='" . $username . "' AND Customer.Password='" . $password . "'";
+            $SQL = "SELECT Customer.ID FROM Customer WHERE Customer.ID='" . $username . "' AND Customer.Password='" . $password . "'";
             $result = mysqli_query($connection, $SQL);
             if($result) {
-                $row = mysqli_fetch_array($result);
-                processResult($row['ID']);
-                echo true;
-                return;
+                $row_count = mysqli_num_rows($result);
+                if ($row_count == 1) {
+                    $row = mysqli_fetch_array($result);
+                    processResult($row['ID']);
+                    echo "success";
+                    return;
+                }
 
             }
-            echo false;
+            echo "fail";
         break;
 
     }
