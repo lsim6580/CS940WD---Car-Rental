@@ -36,7 +36,7 @@
                     </div>          
                 </td>
                 <td>
-                    <div class="return_car" data-rental-id="{{rental_ID}}">Return Car</div>
+                    <div class="return_car rentalCar{{car_ID}}" data-rental-id="{{car_ID}}">Return Car</div>
                 </td>
 
             </tr>
@@ -83,7 +83,7 @@
             </div>
             <div class='car_color'> Color: <div class='{{color}}'></div></div>
             <div class='car_size'> Size: {{size}}</div>
-            <div class='car_rent' id='{{ID}}'> Rent Car </div> 
+            <div class='car_rent car{{ID}}' id="{{ID}}"> Rent Car </div> 
         </div>
     </script>
 </head>

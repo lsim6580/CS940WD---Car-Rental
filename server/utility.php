@@ -46,7 +46,7 @@ if (isset($_POST["type"])) {
             break;
             
         case 'getRentals':
-            $SQL = "SELECT car.Picture, car.Picture_type, carspecs.Make, carspecs.Model, carspecs.YearMade, carspecs.Size, rental.ID as 'RentID', rental.rentDate FROM car 
+            $SQL = "SELECT car.ID as 'carID', car.Picture, car.Picture_type, carspecs.Make, carspecs.Model, carspecs.YearMade, carspecs.Size, rental.ID as 'RentID', rental.rentDate FROM car 
                 INNER JOIN carspecs on car.CarSpecsID = carspecs.ID 
                 INNER JOIN rental on car.ID = rental.carID WHERE
                 car.Status = 2 AND Rental.CustomerID = '".$userID."'";
@@ -59,7 +59,7 @@ if (isset($_POST["type"])) {
                     $row = mysqli_fetch_array($result);
                     $item = array("model" => $row["Model"], 'make' => $row['Make'], 'year' => $row['YearMade'], "size" => $row['Size'],
                         'picture' => 'data:'.$row['Picture_type'].';base64,'.base64_encode($row['Picture']), 'rent_date' => $row['rentDate'],
-                        'rental_ID' => $row['RentID']);
+                        'car_ID' => $row['carID']);
                     $final_result[] = $item;
 
                 }

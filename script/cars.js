@@ -11,12 +11,14 @@ function init() {
             window.location.assign("index.html");
         })
     });
+    
     findCars();
     $('#find-car').on('click', function(e){
         $('#user_loading').removeClass('user_loading_hidden').addClass('user_loading');
         e.stopPropagation();
         findCars($('#find-car-input').val())
     });
+    
     getName().then(function (data) {
         $('#username').html(data);
     });
@@ -87,8 +89,8 @@ function findRentals(){
         var html = html_maker.getHTML(data);
         $('#rented_cars').html(html);
         
-        $('.car_return').on('click', function(){
-            returnCar($(this).attr('id'));
+        $('.return_car').on('click', function(){
+            returnCar($(this).attr('data-rental-id'));
             findRentals();
         })
         
@@ -115,6 +117,7 @@ function findReturns(){
         var html = html_maker.getHTML(data);
         $('#returned_cars').html(html);
     });   
+    findReturns();
 }
 
 function getReturns(){
@@ -124,6 +127,36 @@ function getReturns(){
         url: "server/utility.php",
         dataType: "json",
         data: {type: 'getReturns'}
+    }).then(function (data) {
+        promise.resolve(data)
+    })
+    return promise.promise();
+}
+
+function rentCar(value) {
+    var promise = $.Deferred();
+    $.ajax({
+        method: "POST",
+        url: "server/utility.php",
+        data: {type: 'rentCar', value: 9},//needs to be changed back to 'value' instead of 1
+        success: function(){
+            alert('Car Rented Successfully!');
+        }
+    }).then(function (data) {
+        promise.resolve(data)
+    })
+    return promise.promise();
+}
+
+function returnCar(value) {
+    var promise = $.Deferred();
+    $.ajax({
+        method: "POST",
+        url: "server/utility.php",
+        data: {type: 'returnCar', value: 9},//needs to be changed back to 'value' instead of 1
+        success: function(){
+            alert('Car Returned Successfully!');
+        }
     }).then(function (data) {
         promise.resolve(data)
     })
@@ -155,14 +188,3 @@ function logout() {
     })
     return promise.promise()}
 
-function rentCar(value) {
-    var promise = $.Deferred();
-    $.ajax({
-        method: "POST",
-        url: "server/utility.php",
-        data: {type: 'rentCar', value: 9}//needs to be changed back to 'value' instead of 1
-    }).then(function (data) {
-        promise.resolve(data)
-    })
-    return promise.promise();
-}
