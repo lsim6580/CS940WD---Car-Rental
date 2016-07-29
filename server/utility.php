@@ -21,8 +21,11 @@ if (isset($_POST["type"])) {
             $LIKE.=" OR " . LIKE("carspecs.YearMade", $words);
             $LIKE.=" OR " . LIKE("carspecs.Size", $words);
 
-            $SQL = "SELECT * FROM car INNER JOIN carspecs on car.CarSpecsID = carspecs.ID WHERE
-            $LIKE AND car.Status = 1";
+            $SQL = "SELECT car.ID, car.Picture,car.Picture_type,car.Color,car.Status,carspecs.Make,carspecs.Size,
+                    carspecs.YearMade,carspecs.Model FROM car INNER JOIN carspecs ON car.CarSpecsID = carspecs.ID
+                    WHERE $LIKE";
+//            $SQL = "SELECT * FROM car INNER JOIN carspecs on car.CarSpecsID = carspecs.ID WHERE
+//            $LIKE AND car.Status = 1";
 
             $result = mysqli_query($connection, $SQL);
             if($result) {
@@ -42,7 +45,7 @@ if (isset($_POST["type"])) {
 //
 
             break;
-            
+
         case 'getRentals':
             $SQL = "SELECT car.Picture, car.Picture_type, carspecs.Make, carspecs.Model, carspecs.YearMade, carspecs.Size, rental.ID as 'RentID', rental.rentDate FROM car 
                 INNER JOIN carspecs on car.CarSpecsID = carspecs.ID 

@@ -18,11 +18,12 @@ function init() {
         findCars($('#find-car-input').val())
     });
     getName().then(function (data) {
+        $('#user_loading').addClass('user_loading_hidden').removeClass('user_loading_hidden');
         $('#username').html(data);
     });
     
     $('#rented-tab').on('click',  function(e){
-        $('#user_loading').removeClass('user_loading_hidden').addClass('user_loading');
+
         e.stopPropagation();
         findRentals('');
     })
@@ -30,6 +31,7 @@ function init() {
 }
 
 function getName() {
+    $('#user_loading').removeClass('user_loading_hidden').addClass('user_loading');
     var promise = $.Deferred();
     $.ajax({
         method: "POST",
@@ -74,6 +76,7 @@ function getCars(value) {
         dataType: "json",
         data: {type: 'getCars', value: value}
     }).then(function (data) {
+        $('#find-car').html(data);
         promise.resolve(data)
     })
     return promise.promise();
